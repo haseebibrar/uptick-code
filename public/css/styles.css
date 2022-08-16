@@ -1,0 +1,719 @@
+:root {
+    --bs-font-sans-serif: 'Poppins';
+    --unnamed-color-242424: #242424;
+    --bs-body-color:#242424;
+  }
+body {
+    background-color: white !important;
+}
+#appFront{
+    background: linear-gradient(155deg, white 50%, #FD6B82 50%);
+}
+#appFrontBtm{
+    background-image: url(/images/frontbtmpic.svg);
+    background-repeat: no-repeat;
+    background-size: 220px;
+    position: absolute;
+    z-index: 9999;
+    height: 275px;
+    width: 220px;
+    bottom: 0;
+    left: 59%;
+}
+.headSecBtm{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+.btnMainScreen{
+    font-size: 24px;
+    background: #58CFEF 0% 0% no-repeat padding-box;
+    padding: .5rem 2.3rem !important;
+    width: fit-content;
+    font-weight: 200;
+    color: white;
+}
+.btnMainScreen:hover{
+    color: white;
+}
+.btnTeacher{
+    background: #5F369E 0% 0% no-repeat padding-box;
+}
+.btnAdmin{
+    background: #FFA754 0% 0% no-repeat padding-box;
+}
+.welcomeBody {
+    min-height: 100vh;
+}
+.welcomeCont, .container.innerData {
+    max-width: 100% !important;
+}
+.welcomeCont .navbar-brand.logoimg{
+    padding: 1rem 0 0 2rem !important;
+}
+.logoimg img {
+    height: 30px;
+}
+.welcomeCont .col-md-4 {
+    align-items: center;
+}
+.welcomeCont .col-md-4:last-child {
+    border-right: none;
+}
+.welcomeCont .col-md-4.noBrd {
+    border-right: none;
+}
+.welcomeCont .headSec {
+    margin: 0rem 0rem !important;
+    text-align: center;
+    height: 50vh;
+    line-height: 50vh;
+}
+h1{
+    margin: 0px !important;
+    margin-bottom: 2rem !important;
+    font-size: 1.5rem !important;
+    color: var(--unnamed-color-242424);
+    text-align: center;
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+    color: var(--unnamed-color-242424);
+}
+a:hover{
+    color: var(--unnamed-color-242424);
+}
+.welcomeCont .headSec h1 {
+    background: linear-gradient(180deg, white 50%, #FD6B82 50%);
+    padding-bottom: .6rem !important;
+    margin-bottom: .7rem !important;
+    font-size: 4.7rem !important;
+    display: inline-block;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    font-weight: 400;
+}
+.welcomeCont .headSec h2 {
+    font-size: 3rem !important;
+    font-weight: 400;
+}
+.welcomeCont .btmSecMain{
+    max-width: 950px;
+    margin: 0 auto;
+    height: 42vh;
+}
+.welcomeCont .btmSecMain a{
+    display: block !important;
+    margin: 0 auto !important;
+}
+.frontData .vh-80{
+    height: 80vh !important;
+}
+.frontData .card{
+    box-shadow: 3px 3px 44px #00000029 !important;
+    padding: 5rem 6rem 2rem 6rem !important;
+    width: 62% !important;
+    border: none;
+}
+.frontDataSec .card{
+    padding: 4rem 3rem !important;
+}
+.noPadRight{
+    padding-right: 0px !important;
+}
+.brdrBtm{
+    border: 0px !important;
+    border-bottom: 1px solid black !important;
+    padding-left: 0px !important;
+    background-color: white;
+    border-radius: 0%;
+    color: black;
+}
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    opacity: 1; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: black;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+    color: black;
+}
+.spanBtm{
+    font-size: 12px;
+    color: #888888;
+}
+.btnResetPass{
+    text-decoration: none;
+    font-size: 12px;
+    color: #888888;
+    float: right;
+}
+.btnResetPass:hover{
+    color: #888888;
+}
+.btnSubmit{
+    background-color: #28DF99 !important;
+    width: 100%;
+}
+.signUp{
+    text-align: center;
+    font-size: 13px;
+}
+.signUp a{
+    display: inline-block;
+    color: #28DF99;
+}
+.logoInner{
+    text-align: center;
+    display: block;
+}
+.txtCenter{
+    text-align: center;
+}
+.btmCnt{
+    position:absolute;
+    left: 15%;
+    bottom: 50px;
+}
+.proImg{
+    height: 35px;
+    width: 35px;
+}
+.profilePnl, .profilePnl a{
+    color: #ccc;
+}
+.profilePnl .usrName{
+    font-weight: bold;
+    color: black;
+}
+.navLaftCnt{
+    margin-top: 6rem;
+    display: grid;
+}
+.navLaft{
+    display: block;
+}
+.btnGreen{
+    background-color: #28DF99 !important;
+    border-color: #28DF99;
+}
+.btnGreen:hover{
+    border-color: #28DF99;
+}
+.txtLeft{
+    text-align: left;
+}
+.bgWhite{
+    background-color: white;
+}
+h2{
+    color: var(--unnamed-color-242424);
+    font-weight: 600;
+    font-size: 22px;
+}
+h3{
+    color: var(--unnamed-color-242424);
+    font-weight: 600;
+    font-size: 17px;
+}
+h4{
+    color: var(--unnamed-color-242424);
+    font-weight: 400;
+    font-size: 15px;
+}
+h5{
+    color: var(--unnamed-color-242424);
+    font-weight: 400;
+    font-size: 13px;
+}
+.innerNumsDiv{
+    border: 1px solid #F5F5F5;
+    border-radius: 17px;
+    max-width: 160px;
+    padding: 1rem;
+}
+.numsData{
+    color: var(--unnamed-color-242424);
+    margin-top: 45px;
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 1;
+}
+.bgGreen{
+    background: rgba(88, 207, 239, 0.21) ;
+    margin-right: 1rem;
+}
+.bgPink{
+    background: rgba(255, 167, 84, 0.21);
+}
+.bgGreenDark{
+    background: rgba(40, 223, 153, 0.21) ;
+    margin-right: 1rem;
+}
+.bgYellow{
+    background: rgba(255, 236, 2, 0.21);
+}
+.innerNumsDiv h3{
+    font-size: 21px !important;
+}
+.studentStatsTop h2{
+    font-size: 23px !important;
+}
+.btnGray{
+    border: 1px solid #F5F5F5;
+    background: #F3F3F3;
+}
+.btnGray .fa{
+    color: #000000;
+}
+.apexcharts-legend{
+    display: block !important;
+}
+.apexcharts-legend-series{
+    margin: 5px !important;
+}
+.apexcharts-legend-text{
+    color: var(--unnamed-color-242424) !important;
+    font: var(--bs-font-sans-serif) !important;
+    font-size: 14px !important;
+}
+.progress{
+    height: 0.5rem;
+}
+.progress .bar-primary{
+    background-color: #58CFEF !important;
+}
+.progress .bar-yellow{
+    background-color: #FFEC02 !important;
+}
+.progress .bar-red, .cancelLessons{
+    background-color: #FD6B82 !important;
+}
+.progress .bar-purple{
+    background-color: #5F369E !important;
+}
+.progress .bar-green, .compHours{
+    background-color: #28DF99 !important;
+}
+.emailsBtn a{
+    margin-right: 2rem;
+}
+.cancelLessons{
+    margin-right: 0 !important;
+}
+.circleAct{
+    background: #3DC17D;
+    border-radius: 50px;
+    margin: 0 auto;
+    height: 14px;
+    width: 14px;
+}
+.circleActRed{
+    background: #EE585D;
+}
+.btnSearchBox{
+    padding: 0.2rem 0.75rem !important;
+    font-size: 12px;
+}
+.btnGrayBg{
+    background-color: #F5F5F5;
+    border: 1px solid #F5F5F5;
+    margin:0 1rem;
+}
+.studentStatsTop{
+    padding-bottom: 3rem !important;
+    max-height: 48vh;
+}
+.studentStats{
+    margin-top: 1rem;
+    height: 67vh;
+    overflow-y: scroll;
+}
+/* .studentStats div.table-responsive>div.dataTables_wrapper>div.row:first-child>div[class^=col-]:first-child{
+    width: 30%;
+}
+.studentStats div.table-responsive>div.dataTables_wrapper>div.row:first-child>div[class^=col-]:last-child{
+    width: 70%;
+} */
+.newBtnsDiv{
+    margin-top: 7px;
+}
+.newBtnsDiv .btnGrayBg{
+    margin:0 0 0 1rem !important;
+}
+.newBtnsDiv p{
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 2px;
+}
+.studentStats .table > :not(caption) > * > * {
+    padding: 12px 0.5rem !important;
+}
+#myDataTableStudent_filter input{
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgICB2ZXJzaW9uPSIxLjEiICAgaWQ9InN2ZzQ0ODUiICAgdmlld0JveD0iMCAwIDIxLjk5OTk5OSAyMS45OTk5OTkiICAgaGVpZ2h0PSIyMiIgICB3aWR0aD0iMjIiPiAgPGRlZnMgICAgIGlkPSJkZWZzNDQ4NyIgLz4gIDxtZXRhZGF0YSAgICAgaWQ9Im1ldGFkYXRhNDQ5MCI+ICAgIDxyZGY6UkRGPiAgICAgIDxjYzpXb3JrICAgICAgICAgcmRmOmFib3V0PSIiPiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+ICAgICAgICA8ZGM6dHlwZSAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4gICAgICAgIDxkYzp0aXRsZT48L2RjOnRpdGxlPiAgICAgIDwvY2M6V29yaz4gICAgPC9yZGY6UkRGPiAgPC9tZXRhZGF0YT4gIDxnICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLC0xMDMwLjM2MjIpIiAgICAgaWQ9ImxheWVyMSI+ICAgIDxnICAgICAgIHN0eWxlPSJvcGFjaXR5OjAuNSIgICAgICAgaWQ9ImcxNyIgICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjAuNCw4NjYuMjQxMzQpIj4gICAgICA8cGF0aCAgICAgICAgIGlkPSJwYXRoMTkiICAgICAgICAgZD0ibSAtNTAuNSwxNzkuMSBjIC0yLjcsMCAtNC45LC0yLjIgLTQuOSwtNC45IDAsLTIuNyAyLjIsLTQuOSA0LjksLTQuOSAyLjcsMCA0LjksMi4yIDQuOSw0LjkgMCwyLjcgLTIuMiw0LjkgLTQuOSw0LjkgeiBtIDAsLTguOCBjIC0yLjIsMCAtMy45LDEuNyAtMy45LDMuOSAwLDIuMiAxLjcsMy45IDMuOSwzLjkgMi4yLDAgMy45LC0xLjcgMy45LC0zLjkgMCwtMi4yIC0xLjcsLTMuOSAtMy45LC0zLjkgeiIgICAgICAgICBjbGFzcz0ic3Q0IiAvPiAgICAgIDxyZWN0ICAgICAgICAgaWQ9InJlY3QyMSIgICAgICAgICBoZWlnaHQ9IjUiICAgICAgICAgd2lkdGg9IjAuODk5OTk5OTgiICAgICAgICAgY2xhc3M9InN0NCIgICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjY5NjQsLTAuNzE3NiwwLjcxNzYsMC42OTY0LC0xNDIuMzkzOCwyMS41MDE1KSIgICAgICAgICB5PSIxNzYuNjAwMDEiICAgICAgICAgeD0iLTQ2LjIwMDAwMSIgLz4gICAgPC9nPiAgPC9nPjwvc3ZnPg==);
+    background-position: 0px 3px !important;
+    background-repeat: no-repeat;
+    padding-left: 26px;
+}
+.imgmr-1{
+    margin-right: 1rem;
+}
+.btnSchedule{
+    background-color: #FFE770;
+    border: 1px solid #F5F5F5;
+    padding: 0.2rem 2rem;
+    font-size: 14px;
+}
+.btnSchedule:hover, .btnSchedule.active{
+    background-color: #28DF99;
+}
+.tblTeacherPnl, .topSectionPnl{
+    position: relative;
+}
+.disabledDiv, .disabledDivFocus{
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.tblTeacherPnl thead,
+.tblLessonPnl thead{
+    display: none;
+}
+.tblTeacherPnl td{
+    border: none;
+}
+.tblTeacherPnl div.table-responsive>div.dataTables_wrapper>div.row:first-child>div[class^=col-]:first-child{
+    display: none;
+}
+.tblTeacherPnl div.table-responsive>div.dataTables_wrapper>div.row:first-child>div[class^=col-]:last-child{
+    padding-left: 0px;
+    width: 100%;
+}
+.tblTeacherPnl div.dataTables_wrapper div.dataTables_filter{
+    text-align: left;
+}
+.tblTeacherPnl div.dataTables_wrapper div.dataTables_filter input{
+    margin-left: 0 !important;
+    width: 90%;
+}
+.tblTeacherPnl div.dataTables_wrapper div.dataTables_filter label{
+    width: 100%;
+}
+.linkBlue{
+    text-decoration: underline !important;
+    color: #58CFEF !important;
+}
+.linkBlue:hover{
+    color: #58CFEF !important;
+}
+.tblLessonPnl .table td{
+    padding: 11px 0.5rem;
+}
+.txtRight{
+    text-align: right;
+}
+.btmSecLesson{
+    border: 1px solid #DCDCDC;
+    overflow: hidden;
+}
+.teacherInfo{
+    font-size: 14px;
+    display: flex;
+}
+.teacherInfo p.brdrRight{
+    border-right: 2px solid #242424;
+    margin: 13px 0px !important;
+    padding-right: 1rem;
+}
+.textSecPnl{
+    margin: 13px 0px  !important;
+    padding-left: 1rem;
+}
+.txtSmall{
+    font-size: 12px;
+}
+.brdrGray{
+    border: 1px solid #F5F5F5;
+    padding: 5px 10px;
+}
+.btnsBtmSec{
+    display: -webkit-inline-box;
+}
+.the-final-countdown{
+    border-radius: 5px !important;
+    background: #58CFEF;
+    padding: .2rem .7rem;
+    margin-right: 1rem;
+    position:relative;
+    color: white;
+}
+.the-final-countdown:after {
+    content: "";
+    position: absolute;
+    height: 0;
+    width: 0;
+    left: 100%;
+    top: 5px;
+    border: 7px solid transparent;
+    border-left: 6px solid #58CFEF
+}
+.the-final-countdown p{
+    font-size: 11px !important;
+    margin: 0px !important;
+}
+.enterLesson{
+    padding: .3rem 1rem;
+    background: #8F9198;
+    color: white;
+}
+.modal-dialog {
+    max-width: 500px;
+    max-height: fit-content;
+    margin: 30px auto;
+}
+.extraWidthModal .modal-dialog {
+    max-width: 600px;
+}
+.modal-body {
+    position:relative;
+    padding:0px;
+}
+.close {
+    position:absolute;
+    right:-30px;
+    top:0;
+    z-index:999;
+    font-size:2rem;
+    font-weight: normal;
+    color:#fff;
+    opacity:1;
+    background: transparent;
+    border: none;
+}
+.embed-responsive iframe{
+    width: 1000px;
+    height: 650px;
+}
+.btnStndrd{
+    padding: 0.2rem 2rem;
+    font-size: 14px;
+}
+.tblLessonPnl, .tblLessonPnlRight{
+    overflow-y: scroll;
+    height: 97.7vh;
+}
+.noMargin{
+    margin: 0px !important;
+}
+.form-control{
+    padding: 0.2rem 0.75rem;
+    border-radius: 0px;
+    border: 0px !important;
+}
+.frontData .form-control{
+    border-bottom: 1px solid black !important;
+}
+.schedLesson{
+    background: url(/images/schedule_icon.svg) no-repeat top center;
+    padding-top: 29px;
+}
+.pastLesson{
+    background: url(/images/checklist.svg) no-repeat top center;
+    padding-top: 29px;
+}
+.openLesson{
+    background: url(/images/open_lessons_icon.svg) no-repeat top center;
+    padding-top: 29px;
+}
+.openLesson:hover, .openLesson.active{
+    background: url(/images/Open-lesson-active.jpeg) no-repeat top center;
+    background-size: 25px 25px;
+}
+.schedLesson:hover, .schedLesson.active{
+    background-image: url(/images/schedule-lesson.svg);
+}
+.pastLesson:hover, .pastLesson.active{
+    background-image: url(/images/checklist.png);
+    background-size: 25px 20px;
+}
+.fc-timegrid-slots table tr{
+    height: 65px;
+}
+.fc-v-event{
+    background-color: #58CFEF !important;
+    border: 1px solid #58CFEF !important;
+    border-radius: 0px !important;
+    font-size: 12px !important;
+}
+#calendarteacher .fc-v-event {
+    background-color: #5F369E !important;
+    border: 1px solid #5F369E !important;
+}
+#calendarteacher .fc-v-event.canceledEventTwo {
+    background-color: #EE585D !important;
+    border: 1px solid #EE585D !important;
+}
+#calendarteacher .fc-v-event.canceledEvent {
+    background-color: #58CFEF !important;
+    border: 1px solid #58CFEF !important;
+}
+.modalEvents .modal-content{
+    box-shadow: 3px 3px 44px #00000029 !important;
+    border-color: white !important;
+    max-width: 500px !important;
+}
+#myModal .modalEvents .modal-content{
+    max-width: 500px !important;
+}
+#myModal.extraWidthModal .modalEvents .modal-content{
+    max-width: 600px !important;
+}
+.innerSec{
+    margin: 0 auto;
+}
+.btnSaveTime{
+    color: black;
+    width: 100%;
+}
+.myHeight{
+    height: 97.9vh;
+    max-height: 97.9vh;
+    overflow-y: scroll;
+}
+.fc-event-main{
+    display: none !important;
+}
+.eventInfo{
+    max-height: 65px !important;
+    color: white !important;
+    overflow: hidden;
+}
+#myModalStudents .modal-dialog {
+    max-width: 1000px !important;
+}
+.hide{
+    display: none;
+}
+.teacherName, .editDateData{
+    display: inline-block;
+}
+.genClassTblt{
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px 1rem;
+    font-size: 12px;
+    color: #fff;
+    width: 113px;
+}
+.genClassTblt:hover{
+    color: #fff;
+}
+.btnLessonscheduled{
+    background-color: #3dc17d;
+}
+.btnLessoncanceled{
+    background-color: #ee585d;
+}
+.filterGen{
+    border-color: #f5f5f5;
+    margin-right: 2rem;
+}
+.filterSort{
+    margin-right: 0 !important;
+}
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    font-size: 30px;
+    font-weight: 300;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+.animateDiv {
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+#zoomLink{
+    display: inline-block;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fff; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #FFA754; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #FFA754; 
+}
+@media screen and (min-width: 1920px) {
+    #appFrontBtm{
+        background-size: 400px;
+        height: 515px;
+        width: 400px;
+        left: 56%;
+    }
+}
