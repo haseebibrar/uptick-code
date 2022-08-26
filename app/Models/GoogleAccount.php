@@ -4,8 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Jobs\SynchronizeGoogleCalendars;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Calendar;
+use App\Services\Google;
+use App\Models\User;
 
 class GoogleAccount extends Authenticatable
 {
@@ -17,7 +21,7 @@ class GoogleAccount extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = ['google_id', 'name', 'token'];
-    protected $casts = ['token' => 'json'];
+    protected $casts    = ['token' => 'json'];
 
     public function user()
     {
@@ -27,5 +31,13 @@ class GoogleAccount extends Authenticatable
     public function calendars()
     {
         return $this->hasMany(Calendar::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::created(function ($googleAccount) {
+            SynchronizeGoogleCalendars::dispatch($googleAccount);
+        });
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\GoogleAccount;
+use App\Models\GoogleEvent;
+use App\Models\User;
 use App\Services\Google;
 use DB;
 
@@ -46,7 +48,9 @@ class GoogleAccountController extends Controller
             ]
         );
         // dd(auth()->user()->googleAccounts());
-        return redirect()->route('google.index');
+        auth()->user()->googleAccounts;
+        // return redirect()->route('google.index');
+        return redirect()->route('studentCal');
     }
 
     public function getToken(Google $google){
@@ -54,38 +58,18 @@ class GoogleAccountController extends Controller
         $googleCal  = GoogleAccount::where('user_id', '=', $userID)->first();
         $token      = $googleCal->token['access_token'];
         $getCalID   = $google->connectUsing($googleCal->token)->service('Calendar');
-        // $getCalID->id;
-        dd($getCalID->calendarList->listCalendarList());
-        dd($getCalID->calendars->get('primary'));
-        $userID     = Auth::user()->id;
-        $googleCal  = GoogleAccount::where('user_id', '=', $userID)->first();
-        $token      = $googleCal->token['access_token'];
-        $getCals    = $google->connectUsing($googleCal->token)->service('Calendar');
-        $getCalID   = $getCals->calendars->get('primary')->id;
-        dd($getCalID);
-        // $google->authenticate($token);
-        // $account = $google->service('Oauth2');
-        // $userInfo = $account->userinfo->get();
-        // dd($account);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        $google->authenticate($token);
-        $account = $google->service('Oauth2');
-        $userInfo = $account->userinfo->get();
-        dd($account);
     }
 
-    public function destroy(GoogleAccount $googleAccount)
+    public function destroy(GoogleAccount $googleAccount, Google $google)
     {
-        // TODO:
-        // - Revoke the authentication token.
-        // - Delete the Google Account.
+        $googleAccount->delete();
+        $google->revokeToken($googleAccount->token);
+        return redirect()->back();
+    }
+
+    public function getGoogleEvents(){
+        $events = auth()->user()->googleevents()
+            ->orderBy('started_at', 'desc')
+            ->get();
     }
 }

@@ -15,7 +15,8 @@ class LessonSubject extends Authenticatable
         'name',
         'focusarea_id',
         'pdf_data',
-        'pdf_data_sec'
+        'pdf_data_sec',
+        'kajabi_url'
     ];
 
     public function homeworks()

@@ -17,7 +17,7 @@
         <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type='text/css'>
         @stack('css')
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type='text/css'>
-        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
         <script type='text/javascript'>
             window.smartlook||(function(d) {
                 var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
@@ -26,6 +26,7 @@
             })(document);
             smartlook('init', '0e05673c404dc8cf2492d62845867e877d366e2c', { region: 'eu' });
         </script>
+        <meta name="google-site-verification" content="XbMSSqM0fiA3vpNaSWY98ygdwyZTFa7NymBow21wPWQ" />
     </head>
     <body>
         @php
@@ -138,6 +139,19 @@
                                 @endphp
                                 <div class="txtCenter navLaftCnt mb-4">
                                     @if(!isset($checkreview))
+                                        @php
+                                            $myAuthLink = '<a class="navLaft mb-4" href="/google/oauth">Authorize with<br />Google Calendar</a>';
+                                            if(!empty(Auth::user()->googleAccounts)){
+                                                foreach (Auth::user()->googleAccounts as $account){
+                                                    $myAuthLink = '<form action="'.route('google.destroy', $account).'" method="post">
+                                                        '.csrf_field().'
+                                                        '.method_field('delete').'
+                                                        <button type="submit" class="btn btn-outline-secondary btn-sm">UnAuthorize<br />Google Calendar</button>
+                                                    </form>';
+                                                }
+                                            }   
+                                        @endphp
+                                        {!! $myAuthLink !!}
                                         <a class="navLaft mb-4 schedLesson{{ (request()->is('home')) ? ' active' : '' }}" href="/home">Schedule a<br />lesson</a>
                                         <a class="navLaft mb-4 pastLesson{{ (request()->is('past-future-lesson')) ? ' active' : '' }}" href="/past-future-lesson">Past and future<br />lessons</a>
                                     @endif

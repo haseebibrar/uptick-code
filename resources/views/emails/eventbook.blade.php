@@ -4,11 +4,11 @@ Lesson Focus Area:<br />
 {{ $data['focus_name'] }}<br /><br />
 Teacher:<br />
 {{ $data['teacher'] }}<br /><br />
-Teacher Email:<br />
+Teacher's Email:<br />
 <a href="mailto:{{ $data['teachermail'] }}">{{ $data['teachermail'] }}</a><br /><br />
-Lesson Date/Time:<br />
+Lesson Date and Time:<br />
 {{ $data['time_data'] }} (Israel Time)<br /><br />
-Location:<br />
+Zoom Link:<br />
 <a href="{{ $data['zoom_link'] }}" target="_blank">Click here to join the lesson</a>.<br /><br />
 Much love,<br />
-{{ $data['teacher'] }}<br /><br />
+The Uptick Team

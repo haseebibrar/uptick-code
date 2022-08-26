@@ -33,17 +33,17 @@
                     </div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col-md-6"><label for="embeded_url">Embedded URL</label></div>
+                    <div class="col-md-6"><label for="embeded_url">Embedded video url</label></div>
                     <div class="col-md-6">
                         <input type="url" name="embeded_url" class="form-control" value="{{ $lessonUrl }}">
                     </div>
                 </div>
-                <div class="row mb-4">
+                {{-- <div class="row mb-4">
                     <div class="col-md-6"><label for="embeded_url">Kajabi link</label></div>
                     <div class="col-md-6">
                         <input type="url" name="kajabi_url" class="form-control" value="{{ $kajabiUrl }}">
                     </div>
-                </div>
+                </div> --}}
                 <button type="submit" class="btn btn-primary btnGreen">Save</button>
                 <a class="btn btn-light" href="/teacher/open-lesson/">Cancel</a>
             </form>

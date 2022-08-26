@@ -18,6 +18,7 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+        <meta name="google-site-verification" content="XbMSSqM0fiA3vpNaSWY98ygdwyZTFa7NymBow21wPWQ" />
     </head>
     <body class="welcomeBody">
         <div class="container welcomeCont">

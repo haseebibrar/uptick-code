@@ -45,6 +45,16 @@ class StudentController extends Controller
         //                 ->where('status', '<>', 'canceled')
         //                 ->where('lesson_rating', '=', null)->first();
         // dd($student);
+        
+        // $googleEvents = auth()->user()->googlevents()->orderBy('started_at', 'desc')->get();
+        // $googleEvents = collect($googleEvents)->toJson();
+        // $googleEvents = str_replace('started_at', 'start', $googleEvents);
+        // $googleEvents = str_replace('ended_at', 'end', $googleEvents);
+        // $googleEvents = str_replace('name', 'title', $googleEvents);
+        // dd($googleEvents);
+        // dd($studentID);
+
+
         if(!empty($student)){
             // $eventID    = $student->id;
             return view('student.review', compact('student', 'studentID'));
@@ -162,14 +172,14 @@ class StudentController extends Controller
                         ->leftJoin('home_works', 'home_works.lesson_id', '=', 'events.lesson_id')
                         ->leftJoin('lesson_subjects', 'lesson_subjects.id', '=', 'events.lesson_id')
                         ->join('teachers', 'teachers.id', '=', 'events.teacher_id')
-                        ->get(['events.*', 'focus_areas.name as focusarea', 'teachers.name as teacher', 'teachers.image as teacherimage', 'home_works.id as homeworkid', 'lesson_subjects.pdf_data', 'lesson_subjects.pdf_data_sec']);
+                        ->get(['events.*', 'focus_areas.name as focusarea', 'teachers.name as teacher', 'teachers.image as teacherimage', 'home_works.id as homeworkid', 'lesson_subjects.pdf_data', 'lesson_subjects.pdf_data_sec', 'lesson_subjects.kajabi_url as homeworkurl']);
         $compCount  = count($compEvents);
         // dd($compEvents);
         $futureEvents = DB::table('events')->where('events.student_id', '=', $studentID)->where('events.status', '<>', 'canceled')->whereDate('events.start', '>=', $curDate)
                             ->join('focus_areas', 'focus_areas.id', '=', 'events.focusarea_id')
                             ->join('teachers', 'teachers.id', '=', 'events.teacher_id')
                             ->leftJoin('lesson_subjects', 'lesson_subjects.id', '=', 'events.lesson_id')
-                            ->get(['events.*', 'focus_areas.name as focusarea', 'teachers.name as teacher', 'teachers.zoom_link', 'teachers.expertise', 'teachers.image as teacherimage', 'lesson_subjects.pdf_data', 'lesson_subjects.pdf_data_sec']);
+                            ->get(['events.*', 'focus_areas.name as focusarea', 'teachers.name as teacher', 'teachers.zoom_link', 'teachers.expertise', 'teachers.image as teacherimage', 'lesson_subjects.pdf_data', 'lesson_subjects.pdf_data_sec', 'lesson_subjects.kajabi_url as homeworkurl']);
         $futCount     = count($futureEvents);
         return view('student.pastfuture', compact('compEvents', 'futureEvents', 'compCount', 'futCount', 'studentID'));
     }
@@ -235,8 +245,19 @@ class StudentController extends Controller
                             ->get(['events.id', 'events.start', 'events.end', 'events.class_name as className', 'focus_areas.name as title', 'teachers.name as description']);
             // $data   = Event::where('student_id', '=', $studentID)->whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','teacher_id','start', 'end']);
             //return $data;
+            
+            // dd(response()->json($data));
             return response()->json($data);
         }
+    }
+
+    public function getCalEventsGoogle(Request $request){
+        $googleEvents = auth()->user()->googlevents()->orderBy('started_at', 'desc')->get();
+        $googleEvents = collect($googleEvents)->toJson();
+        $googleEvents = str_replace('started_at', 'start', $googleEvents);
+        $googleEvents = str_replace('ended_at', 'end', $googleEvents);
+        $googleEvents = str_replace('name', 'title', $googleEvents);
+        return $googleEvents;
     }
 
     public function getClickData(Request $request)
@@ -354,7 +375,7 @@ class StudentController extends Controller
             'focus_name'    => $focusname->name,
             'subject'       => $mySubject
         ];
-        // Mail::to($emailStude)->send(new NotifyMail($emailData, 'eventbook'));
+        Mail::to($emailStude)->send(new NotifyMail($emailData, 'eventbook'));
         return redirect('/home')->with('success','Booked Successfully.');
     }
 

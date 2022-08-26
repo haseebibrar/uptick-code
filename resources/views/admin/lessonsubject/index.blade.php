@@ -19,6 +19,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Homework</th>
                             <th scope="col">PDF</th>
+                            <th scope="col">Kajabi link</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -28,6 +29,7 @@
                                 $editBtn    = '';
                                 $pdfFile    = 'No File Uploaded';
                                 $pdfFileSec = '';
+                                $homeWorkLink= '';
                                 if(isset($lessonsubject->homeworks))
                                     $editBtn = '<a href="/admin/homework/edit/'.$lessonsubject->homeworks->id.'" class="btn btn-info mr-3"><i class="fa fa-edit"></i> Edit Homework</a>';
                                 
@@ -35,6 +37,9 @@
                                     $pdfFile = '<a href="'.asset('images/users/'.$lessonsubject->pdf_data).'" target="_blank">View File One</a>';
                                 if(!empty($lessonsubject->pdf_data_sec))
                                     $pdfFileSec = '<br /><a href="'.asset('images/users/'.$lessonsubject->pdf_data_sec).'" target="_blank">View File Two</a>';
+                                
+                                if(!empty($lessonsubject->kajabi_url))
+                                    $homeWorkLink = '<a href="'.$lessonsubject->kajabi_url.'" target="_blank">Home Work Link</a>';
                             @endphp
                         <tr>
                                 <td class="font-weight-bold align-middle"></td>
@@ -54,6 +59,7 @@
                                 <td class="text-nowrap">
                                     {!! $pdfFile.$pdfFileSec !!}
                                 </td>
+                                <td class="text-nowrap">{!! $homeWorkLink !!}</td>
                                 <td class="text-nowrap">
                                     <a href="/admin/lessonsubject/edit/{{$lessonsubject->id}}" class="btn btn-info mr-3"><i class="fa fa-edit"></i> Edit</a>
                                     <a href="javascript:void(0)" data-id="{{$lessonsubject->id}}" class="btn btnDel btn-danger"><i class="fa fa-trash"></i> Delete</a>

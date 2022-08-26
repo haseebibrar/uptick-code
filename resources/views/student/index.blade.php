@@ -14,7 +14,6 @@
 @endpush
 @section('content')
   <div class="col-md-7 noPadRight">
-    <button id="authorize-button" style="display: none;">Authorize</button>
     @if ($message = Session::get('success'))
         <div class="alert alert-success" id="msgSuccess">
             <p>{{ $message }}</p>
@@ -176,207 +175,125 @@
 {{-- <script src="{{ asset('js/moment.js') }}"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
 <script>
-  var clientId = '683701892091-hrhrhru0dan62fs9ma43h7nv6dj8utdd.apps.googleusercontent.com';
-  var apiKey = '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';
-  var scopes = 'https://www.googleapis.com/auth/calendar';
-
-  function handleClientLoad() {
-    gapi.client.setApiKey('apiKey');
-    window.setTimeout(checkAuth,1);
-  }
-
-  function checkAuth() {
-    gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
-  }
-
-  function handleAuthResult(authResult) {
-    var authorizeButton = document.getElementById('authorize-button');
-    
-    if (authResult && !authResult.error) {
-      authorizeButton.style.visibility = 'hidden';		  
-      makeApiCall();
-    } else {
-      authorizeButton.style.visibility = '';
-      authorizeButton.onclick = handleAuthClick;
-      alert('test');
-      GeneratePublicCalendar();
-    }
-  }
-
-  function handleAuthClick(event) {            
-    gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
-    return false;
-  }
-      
-      
-  // Load the API and make an API call.  Display the results on the screen.
-  function makeApiCall() {
-
-    // Step 4: Load the Google+ API
-    gapi.client.load('calendar', 'v3').then(function() {
-      // Step 5: Assemble the API request
-      var request = gapi.client.calendar.events.list({
-        'calendarId': 'haseeb.ibrar@adzspec.com'
-      });
-      
-      // Step 6: Execute the API request
-      request.then(function(resp) {
-        var eventsList = [];
-        var successArgs;
-        var successRes;
-
-        if (resp.result.error) {
-          reportError('Google Calendar API: ' + data.error.message, data.error.errors);
-        }
-        else if (resp.result.items) {
-          $.each(resp.result.items, function(i, entry) {
-            var url = entry.htmlLink;
-            // make the URLs for each event show times in the correct timezone
-            //if (timezoneArg) {
-            //    url = injectQsComponent(url, 'ctz=' + timezoneArg);
-            //}
-            eventsList.push({
-              id: entry.id,
-              title: entry.summary,
-              start: entry.start.dateTime || entry.start.date, // try timed. will fall back to all-day
-              end: entry.end.dateTime || entry.end.date, // same
-              url: url,
-              location: entry.location,
-              description: entry.description
-            });
-          });
-
-          // call the success handler(s) and allow it to return a new events array
-          successArgs = [ eventsList ].concat(Array.prototype.slice.call(arguments, 1)); // forward other jq args
-          successRes = $.fullCalendar.applyAll(true, this, successArgs);
-          if ($.isArray(successRes)) {
-            return successRes;
-          }
-        }
-
-          if(eventsList.length > 0)
-          {
-            // Here create your calendar but the events options is :
-            //fullcalendar.events: eventsList (Still looking for a methode that remove current event and fill with those news event without recreating the calendar.
-            
-          }
-          return eventsList;
-        }, function(reason) {
-          console.log('Error: ' + reason.result.error.message);
-        });
-    });
-  }
-  var calendar;
+var calendar;
   $(document).ready(function () {
-    handleClientLoad();
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     });
-    function GeneratePublicCalendar(){
-      var calendarEl = document.getElementById('calendar');
-      var SITEURL = "{{url('/')}}";
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        googleCalendarApiKey: 'AIzaSyCjFALUixwyTiFnMk-jI4zFA07Usgt7GXA',
-        themeSystem       : 'standard',
-        height            : '85vh',
-        allDaySlot        : false,
-        expandRows        : true,
-        slotMinTime       : '09:00',
-        slotMaxTime       : '21:00',
-        slotDuration      : '01:00',
-        headerToolbar     : {
-          left    : 'prev,next today',
-          center  : 'title',
-          right   : 'timeGridWeek,timeGridDay'
-        },
-        initialView       : 'timeGridWeek',
-        navLinks          : true, // can click day/week names to navigate views
-        editable          : false,
-        selectable        : true,
-        nowIndicator      : true,
-        dayMaxEvents      : true, // allow "more" link when too many events
-        events: {
+    var calendarEl = document.getElementById('calendar');
+    var SITEURL = "{{url('/')}}";
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      themeSystem       : 'standard',
+      height            : '85vh',
+      allDaySlot        : false,
+      expandRows        : true,
+      slotMinTime       : '09:00',
+      slotMaxTime       : '21:00',
+      slotDuration      : '01:00',
+      headerToolbar     : {
+        left    : 'prev,next today',
+        center  : 'title',
+        right   : 'timeGridWeek,timeGridDay'
+      },
+      initialView       : 'timeGridWeek',
+      navLinks          : true, // can click day/week names to navigate views
+      editable          : false,
+      selectable        : true,
+      nowIndicator      : true,
+      dayMaxEvents      : true, // allow "more" link when too many events
+      //events: {
+      //  url: SITEURL + "/getevents",
+      //  failure: function() {
+          //document.getElementById('script-warning').style.display = 'none'
+      //  }
+      //},
+       eventSources: [
+        {
           url: SITEURL + "/getevents",
-          failure: function() {
-            //document.getElementById('script-warning').style.display = 'none'
-          }
         },
-        eventDidMount: function (info) {
-          //console.log(info);
-          info.el.innerHTML = '<div class="eventInfo">'+info.timeText+'<br />'+info.event._def.title+' / '+info.event._def.extendedProps.description+'</div>';
-        },
-        loading: function(bool) {
-          document.getElementById('loading').style.display =bool ? 'block' : 'none';
-        },
-        select: function(arg) {
-          var myApp   = 1;
-          var myStart = moment(arg.start, "m-dd-y");
-          var dt      = new Date();
-          //var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-          if( isNowBetweenTime(arg.start, dt) ){
-            myApp = 0;
-          } else {
-            myApp = 1;
-          }
-          //return false;
-          //if(myStart.isBefore(moment())) {
-          //}
-          if(myApp === 1){
-            $.ajax({
-                url: SITEURL + "/get-data",
-                data: {start:arg.start, end:arg.end},
-                type: "POST",
-                success: function (data) {
-                  if(data === "1"){
-                    // alert();
-                    $('#myModalSmall .modal-content').html('<div style="font-size: 15px; text-align:center;" class="mb-4">You do not have any hours left. Please contact your HR manager.</div><div style="display:flex; text-align:center; margin: 0 auto;"><a href="javascript:void(0)" class="btnStndrd btnGreen closeModal" style="margin-right: 10px;">Close</a></div>');
-                    $('#myModalSmall').modal('show');
-                  }else{
-                    $('.disabledDivFocus').hide();
-                    //$('.topSectionPnl').addClass('animatebutton');
-                    myData = data.split("--");
-                    $('#myday').val(myData[0]);
-                    $('#mydate').val(myData[1]);
-                    $('#mystart').val(myData[2]);
-                    $('#myend').val(myData[3]);
-                    $('#mydatefull').val(myData[4]);
-                    $("input[name='focusarea']:radio").prop( "checked", false );
-                    $('.disabledDiv').show();
-                    const element =  document.querySelector('.topSectionPnl');
-                    let startDate = new Date(myData[2]);
-                    var event_container = $('td[data-date="' + startDate.toISOString().split('T')[0] +'"]').first();
-                    $(event_container).find('.fc-timegrid-col-frame').find('.fc-timegrid-col-events').first().append($('#current-slot'));
-                    $('#current-slot').css('display', 'block');
-                    //var formatT = 'hh:mm:ss';
-                    var timeStart = moment(arg.start).format("hh:mm");
-                    var timeEnd   = moment(arg.end).format("hh:mm a");
-                    //alert(timeT);
-                    $('.timeClick').html(timeStart+' - '+timeEnd);
-                    let inset = (startDate.getHours() - 9) * 65 + "px 0% -" + (startDate.getHours() - 8) * 65 + "px";
-                    $('#current-slot').css('inset', inset);
-                    element.classList.add('animateDiv');
-                    setTimeout(function() {
-                      element.classList.remove('animateDiv'); 
-                    },1000); 
-                  }
-                  return false;
+        {
+          url: SITEURL + "/geteventsgoogle",
+          color: 'red',
+          className: 'googleCal'
+        }
+      ],
+      eventDidMount: function (info) {
+        //console.log(info);
+        info.el.innerHTML = '<div class="eventInfo">'+info.timeText+'<br />'+info.event._def.title+' / '+info.event._def.extendedProps.description+'</div>';
+      },
+      loading: function(bool) {
+        document.getElementById('loading').style.display =bool ? 'block' : 'none';
+      },
+      select: function(arg) {
+        var myApp   = 1;
+        var myStart = moment(arg.start, "m-dd-y");
+        var dt      = new Date();
+        //var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+        if( isNowBetweenTime(arg.start, dt) ){
+          myApp = 0;
+        } else {
+          myApp = 1;
+        }
+        //return false;
+        //if(myStart.isBefore(moment())) {
+        //}
+        if(myApp === 1){
+          $.ajax({
+              url: SITEURL + "/get-data",
+              data: {start:arg.start, end:arg.end},
+              type: "POST",
+              success: function (data) {
+                if(data === "1"){
+                  // alert();
+                  $('#myModalSmall .modal-content').html('<div style="font-size: 15px; text-align:center;" class="mb-4">You do not have any hours left. Please contact your HR manager.</div><div style="display:flex; text-align:center; margin: 0 auto;"><a href="javascript:void(0)" class="btnStndrd btnGreen closeModal" style="margin-right: 10px;">Close</a></div>');
+                  $('#myModalSmall').modal('show');
+                }else{
+                  $('.disabledDivFocus').hide();
+                  //$('.topSectionPnl').addClass('animatebutton');
+                  myData = data.split("--");
+                  $('#myday').val(myData[0]);
+                  $('#mydate').val(myData[1]);
+                  $('#mystart').val(myData[2]);
+                  $('#myend').val(myData[3]);
+                  $('#mydatefull').val(myData[4]);
+                  $("input[name='focusarea']:radio").prop( "checked", false );
+                  $('.disabledDiv').show();
+                  const element =  document.querySelector('.topSectionPnl');
+                  let startDate = new Date(myData[2]);
+                  var event_container = $('td[data-date="' + startDate.toISOString().split('T')[0] +'"]').first();
+                  $(event_container).find('.fc-timegrid-col-frame').find('.fc-timegrid-col-events').first().append($('#current-slot'));
+                  $('#current-slot').css('display', 'block');
+                  //var formatT = 'hh:mm:ss';
+                  var timeStart = moment(arg.start).format("hh:mm");
+                  var timeEnd   = moment(arg.end).format("hh:mm a");
+                  //alert(timeT);
+                  $('.timeClick').html(timeStart+' - '+timeEnd);
+                  let inset = (startDate.getHours() - 9) * 65 + "px 0% -" + (startDate.getHours() - 8) * 65 + "px";
+                  $('#current-slot').css('inset', inset);
+                  element.classList.add('animateDiv');
+                  setTimeout(function() {
+                    element.classList.remove('animateDiv'); 
+                  },1000); 
                 }
-            });
-            calendar.unselect()
-          }else{
-            alert('Schedule your lesson at least 24 hours in advance :)');
-            return false;
-          }
-        },
-        eventClick: function(arg) {
+                return false;
+              }
+          });
+          calendar.unselect()
+        }else{
+          alert('Schedule your lesson at least 24 hours in advance :)');
+          return false;
+        }
+      },
+      eventClick: function(arg) {
+        //alert(arg.event.className);
+        // console.log(arg.el.fcSeg.eventRange.ui.classNames[0]);
+        var checkClass = arg.el.fcSeg.eventRange.ui.classNames[0];
+        var myEvent = arg.el;
+        if(checkClass === 'googleCal'){
+        }else{
           var myStart = moment(arg.el.fcSeg.start, "m-dd-y");
-          //console.log(arg.el.fcSeg.start);
-          //if(myStart.isBefore(moment())) {
-          //    alert("You can't edit past lesson!");
-          //    return false;
-          //}
           var myEventID = arg.event.id;
           $('.editEvent, .dltEvent').attr('data-id', myEventID);
           $('.modal-backdrop, .btnGreenEdit').hide();
@@ -403,10 +320,10 @@
                 $('#myModalSec').modal('show');
               }
           });
-        },
-      });
-      calendar.render();
-    }
+        }
+      },
+    });
+    calendar.render();
 
     function isNowBetweenTime(startTime, endTime){
       var format = 'm-dd-y hh:mm:ss';
@@ -618,5 +535,4 @@
     });
   });
 </script>
-<script src="https://apis.google.com/js/client.js"></script>
 @endsection

@@ -29,7 +29,7 @@
             <div class="table-responsive mt-4">
                 <table class="table" id="myDataTable">
                     <thead>
-                        <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+                        <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
                     </thead>
                     <tbody>
                         @php
@@ -37,7 +37,7 @@
                         @endphp
                         @foreach ($compEvents as $events)
                             @php
-                                //dd($events->homeworkid);
+                                //dd($events);
                                 $myImage = asset('images/placeholderimage.png');
                                 $myDate  = date('m/d/Y', strtotime($events->start));
                                 if(!empty($events->teacherimage))
@@ -45,16 +45,16 @@
                             @endphp
                             <tr>
                                 <td class="align-middle">{{ $counter }}</td>
-                                <td class="align-middle"><img class="rounded-circle imgmr-1" style="width:40px; height:30px;" src="{{ $myImage }}" alt="{{ $events->teacher }}" title="{{ $events->teacher }}" /> {{ $events->teacher }}</td>
+                                <td class="align-middle"><img class="rounded-circle imgmr-1" style="width:35px; height:35px;" src="{{ $myImage }}" alt="{{ $events->teacher }}" title="{{ $events->teacher }}" /> {{ $events->teacher }}</td>
                                 <td class="align-middle">{{ $myDate }}</td>
                                 <td class="align-middle">{{ $events->focusarea }}</td>
                                 <td class="text-nowrap align-middle">{!! empty($events->lesson_url) ? '' : '<button type="button" class="btn linkBlue video-btn" data-toggle="modal" data-src="'.$events->lesson_url.'" data-target="#myModalStudents">Recording</button>' !!}</td>
-                                <td class="text-nowrap align-middle"> {!! empty($events->kajabi_url) ? '' : '<a class="linkBlue" href="'.$events->kajabi_url.'" target="_blank">Kajabi</a>' !!}</td>
+                                {{-- <td class="text-nowrap align-middle"> {!! empty($events->kajabi_url) ? '' : '<a class="linkBlue" href="'.$events->kajabi_url.'" target="_blank">Kajabi</a>' !!}</td> --}}
                                 <td class="text-nowrap align-middle">
                                     {!! empty($events->pdf_data) ? '' : '<a class="linkBlue" href="'.asset('images/users/'.$events->pdf_data).'" target="_blank">Slide</a>' !!}
                                     {!! empty($events->pdf_data_sec) ? '' : '<br /><a class="linkBlue" href="'.asset('images/users/'.$events->pdf_data_sec).'" target="_blank">Slide Two</a>' !!}
                                 </td>
-                                <td class="text-nowrap align-middle">{!! empty($events->homeworkid) ? '' : '<a class="linkBlue" href="/homework/'.$events->homeworkid.'">Homework</a>' !!}</td>
+                                <td class="text-nowrap align-middle">{!! empty($events->homeworkurl) ? '' : '<a class="linkBlue" href="/homework/'.$events->homeworkurl.'">Homework</a>' !!}</td>
                             </tr>
                             @php
                                 $counter++;

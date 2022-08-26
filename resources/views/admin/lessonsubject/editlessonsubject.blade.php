@@ -46,6 +46,12 @@
                         <input type="file" name="pdf_data_sec" class="form-control" value="{{ $lessonsubjects->pdf_data_sec }}">
                     </div>
                 </div>
+                <div class="row mb-4">
+                    <div class="col-md-6"><label for="embeded_url">Kajabi link</label></div>
+                    <div class="col-md-6">
+                        <input type="url" name="kajabi_url" class="form-control" value="{{ $lessonsubjects->kajabi_url }}">
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary btnGreen">Save</button>
                 <a class="btn btn-light" href="/admin/lessonsubject/">Cancel</a>
             </form>

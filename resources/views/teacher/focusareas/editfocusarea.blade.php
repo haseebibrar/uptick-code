@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col-md-6"><label for="embeded_url">Embeded URL</label></div>
+                    <div class="col-md-6"><label for="embeded_url">Embedded video url</label></div>
                     <div class="col-md-6">
                         <input type="url" name="embeded_url" class="form-control" value="{{ $focusareateacher->embeded_url }}" required>
                     </div>

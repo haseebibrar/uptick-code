@@ -34,7 +34,7 @@
                             @endphp
                             <tr>
                                 <td class="align-middle">{{ $counter }}</td>
-                                <td class="align-middle"><img class="rounded-circle imgmr-1" style="width:40px; height:30px;" src="{{ $myImage }}" alt="{{ $events->student }}" title="{{ $events->student }}" /> {{ $events->student }}</td>
+                                <td class="align-middle"><img class="rounded-circle imgmr-1" style="width:35px; height:35px;" src="{{ $myImage }}" alt="{{ $events->student }}" title="{{ $events->student }}" /> {{ $events->student }}</td>
                                 <td class="align-middle"><span style="margin-right:1rem;">{{ $myDate }}</span> | <span style="margin-right:1rem; margin-left:1rem; width:125px; display:inline-block;">{{ $myTime }}</span> | <span style="margin-left:1rem;">{{ $events->focusarea }}</span></td>
                                 <td class="align-middle">
                                     <a class="genClassTblt btnLessonscheduled" href="{{ route('lesson-material') }}"

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\GoogleAccount;
+use App\Models\GoogleEvent;
+
 
 class User extends Authenticatable
 {
@@ -68,5 +71,16 @@ class User extends Authenticatable
     public function googleAccounts()
     {
         return $this->hasMany(GoogleAccount::class);
+    }
+
+    public function googlevents()
+    {
+        return GoogleEvent::whereHas('calendar', function ($calendarQuery) {
+            $calendarQuery->whereHas('googleAccount', function ($accountQuery) {
+                $accountQuery->whereHas('user', function ($userQuery) {
+                    $userQuery->where('id', $this->id);
+                });
+            });
+        });
     }
 }

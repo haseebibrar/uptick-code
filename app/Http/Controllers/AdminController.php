@@ -955,6 +955,7 @@ class AdminController extends Controller
                 'name'        => $input['name'],
                 'pdf_data'    => $myPDF,
                 'pdf_data_sec'=> $myPDFSec,
+                'kajabi_url'  => $input['kajabi_url'],
             ]);
             return redirect()->route('admin.lessonsubjects')->with('success','Lesson Added Successfully.');
         }
@@ -994,6 +995,8 @@ class AdminController extends Controller
             $lesson->pdf_data   = $request->pdf_data;
         if(isset($request->pdf_data_sec))
             $lesson->pdf_data_sec   = $request->pdf_data_sec;
+        if(isset($request->kajabi_url))
+            $lesson->kajabi_url   = $request->kajabi_url;
         $lesson->save();
         return redirect()->route('admin.lessonsubjects')->with('success','Record Updated Successfully.');
     }

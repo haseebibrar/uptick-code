@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 class Google
@@ -18,22 +19,6 @@ class Google
         $this->client = $client;
     }
 
-    public function __call($method, $args)
-    {
-        if (! method_exists($this->client, $method)) {
-            throw new \Exception("Call to undefined method '{$method}'");
-        }
-
-        return call_user_func_array([$this->client, $method], $args);
-    }
-
-    public function service($service)
-    {
-        $classname = "Google_Service_$service";
-
-        return new $classname($this->client);
-    }
-
     public function connectUsing($token)
     {
         $this->client->setAccessToken($token);
@@ -44,7 +29,21 @@ class Google
     public function revokeToken($token = null)
     {
         $token = $token ?? $this->client->getAccessToken();
-
         return $this->client->revokeToken($token);
+    }
+
+    public function service($service)
+    {
+        $classname = "Google_Service_$service";
+        return new $classname($this->client);
+    }
+
+    public function __call($method, $args)
+    {
+        if (! method_exists($this->client, $method)) {
+            throw new \Exception("Call to undefined method '{$method}'");
+        }
+
+        return call_user_func_array([$this->client, $method], $args);
     }
 }
